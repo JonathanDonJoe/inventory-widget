@@ -4,7 +4,12 @@ function Searchbar(props) {
 
 
     return(
-        <h1>Search Bar</h1>
+        <div className='search-bar'>
+            <input type='text' placeholder='search' />
+            <div>
+                <input id='in-stock' type='checkbox' /> Only show products in stock
+            </div>
+        </div>
     )
 }
 
