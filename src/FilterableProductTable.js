@@ -6,7 +6,7 @@ class FilterableProductTable extends Component {
 
     render() {
         return(
-            <div className='col-sm-12 col-md-6 col-lg-3'>
+            <div className='col-sm-12 col-md-6 col-lg-4'>
                 <SearchBar />
                 <ProductTable />
             </div>

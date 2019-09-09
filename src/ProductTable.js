@@ -1,16 +1,40 @@
 import React, { Component } from 'react';
 import productData from './data';
 import ProductRow from './ProductRow';
+import ProductCategoryRow from './ProductCategoryRow';
 
-console.log(productData);
+
+
 
 function ProductTable(props) {
+    
+    let tempProducts = {};
+    
+    productData.data.forEach((product,i) => {
+        if (tempProducts[product.category] === undefined) {
+            tempProducts[product.category] = []
+            
+        }
+        tempProducts[product.category].push(product);
 
-    const products = productData.data.map((product,i) => {
-        return(
-                <ProductRow key={i} product={product} />
-            )
+        // return(
+        //         <ProductRow key={i} product={product} />
+        //     )
+
+        
     })
+    
+    console.log(tempProducts);
+
+    let rows = [];
+
+    for (let key in tempProducts) {
+        // console.log(key);
+        rows.push( <ProductCategoryRow header={key} /> );
+        tempProducts[key].forEach( (product) => {
+            rows.push( <ProductRow product={product}/> );
+        })
+    }
 
     return(
         <div className='product-table'>
@@ -22,7 +46,7 @@ function ProductTable(props) {
                     </tr>
                 </thead>
                 <tbody>
-                    {products}
+                    {rows}
                 </tbody>
             </table>
         </div>
