@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import React from 'react';
 import productData from './data';
 import ProductRow from './ProductRow';
 import ProductCategoryRow from './ProductCategoryRow';
@@ -12,27 +12,17 @@ function ProductTable(props) {
     
     productData.data.forEach((product,i) => {
         if (tempProducts[product.category] === undefined) {
-            tempProducts[product.category] = []
-            
+            tempProducts[product.category] = []     
         }
         tempProducts[product.category].push(product);
-
-        // return(
-        //         <ProductRow key={i} product={product} />
-        //     )
-
-        
     })
     
-    console.log(tempProducts);
-
     let rows = [];
-
     for (let key in tempProducts) {
         // console.log(key);
-        rows.push( <ProductCategoryRow header={key} /> );
-        tempProducts[key].forEach( (product) => {
-            rows.push( <ProductRow product={product}/> );
+        rows.push( <ProductCategoryRow key={key} header={key} /> );
+        tempProducts[key].forEach( (product, i) => {
+            rows.push( <ProductRow key={key+i} product={product}/> );
         })
     }
 
