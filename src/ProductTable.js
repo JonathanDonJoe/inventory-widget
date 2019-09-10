@@ -26,6 +26,8 @@ function ProductTable(props) {
         })
     }
 
+    console.log(props.search)
+
     return(
         <div className='product-table'>
             <table className='table table-stripe'>
