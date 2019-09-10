@@ -9,12 +9,14 @@ import ProductCategoryRow from './ProductCategoryRow';
 function ProductTable(props) {
     
     let tempProducts = {};
-    
+    let inStockArr = productData.data
     // console.log(productData.data[0].name)
-    
-    // console.log(productData.data.filter( item => item.name.toLowerCase().includes(props.search.toLowerCase())))
+    if(props.inStock) {
+        inStockArr = productData.data.filter( item => item.inStock)
+    }
+    // console.log(productData.data.filter( item => item.inStock))
 
-    productData.data.filter( item => item.name.toLowerCase().includes(props.search.toLowerCase())).forEach((product,i) => {
+    inStockArr.filter( item => item.name.toLowerCase().includes(props.search.toLowerCase())).forEach((product,i) => {
         if (tempProducts[product.category] === undefined) {
             tempProducts[product.category] = []     
         }
@@ -32,6 +34,7 @@ function ProductTable(props) {
     }
 
     console.log(props.search)
+    console.log(props.inStock)
 
     return(
         <div className='product-table'>
