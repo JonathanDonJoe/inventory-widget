@@ -10,12 +10,17 @@ function ProductTable(props) {
     
     let tempProducts = {};
     
-    productData.data.forEach((product,i) => {
+    // console.log(productData.data[0].name)
+    
+    // console.log(productData.data.filter( item => item.name.toLowerCase().includes(props.search.toLowerCase())))
+
+    productData.data.filter( item => item.name.toLowerCase().includes(props.search.toLowerCase())).forEach((product,i) => {
         if (tempProducts[product.category] === undefined) {
             tempProducts[product.category] = []     
         }
         tempProducts[product.category].push(product);
     })
+    
     
     let rows = [];
     for (let key in tempProducts) {
